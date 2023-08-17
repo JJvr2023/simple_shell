@@ -3,12 +3,12 @@
 #include <stdlib.h>
 
 /**
- * executable - it execute commands.
+ * execute_args - it execute commands.
  * @args: handle errors.
  *
  * Return: (1) Success, (0) Failure.
  */
-int executable(char **args)
+int execute_args(char **args)
 {
 	char *builtin_in_list[] = {"cd", "help", "env", "exit"};
 	int (*builtin_in_func[])(char **) = {&own_help, &own_cd, &own_env, &own_exist};
