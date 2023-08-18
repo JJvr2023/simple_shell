@@ -8,36 +8,38 @@
  */
 void interactive_shell(void)
 {
-    while (1)
-    {
-        printf("$ ");
-        char *line = read_line();
-        if (!line) {
-            fprintf(stderr, "Error reading input.\n");
-            continue;
-        }
+	while (1)
+	{
+		printf("$ ");
+		char *line = read_line();
+		if (!line)
+		{
+			fprintf(stderr, "Error reading input.\n");
+			continue;
+		}
 
-        char **args = split_line(line);
-        if (!args) {
-            fprintf(stderr, "Error splitting strings.\n");
-            free(line);
-            continue;
-        }
+		char **args = split_line(line);
+		if (!args)
+		{
+			fprintf(stderr, "Error splitting strings.\n");
+			free(line);
+			continue;
+		}
 
-        int status = execute_args(args);
+		int status = execute_args(args);
 
-        free(args);
-        free(line);
+		free(args);
+		free(line);
 
-        if (status >= 0)
-        {
-            exit(status);
-        }
-        else
-        {
-            fprintf(stderr, "Error executing the command.\n");
-        }
-    }
+		if (status >= 0)
+		{
+			exit(status);
+		}
+		else
+		{
+			fprintf(stderr, "Error executing the command.\n");
+		}
+	}
 }
 
 /**
@@ -48,35 +50,37 @@ void interactive_shell(void)
  */
 void non_interactive_shell(void)
 {
-    while (1)
-    {
-        char *line = read_stream();
-        if (!line) {
-            fprintf(stderr, "Error reading stream.\n");
-            continue;
-        }
+	while (1)
+	{
+		char *line = read_stream();
+		if (!line)
+		{
+			fprintf(stderr, "Error reading stream.\n");
+			continue;
+		}
 
-        char **args = split_line(line);
-        if (!args) {
-            fprintf(stderr, "Error splitting lines.\n");
-            free(line);
-            continue;
-        }
+		char **args = split_line(line);
+		if (!args)
+		{
+			fprintf(stderr, "Error splitting lines.\n");
+			free(line);
+			continue;
+		}
 
-        int status_args(args);
+		int status = execute_args(args);
 
-        free(args);
-        free(line);
+		free(args);
+		free(line);
 
-        if (status == 0)
-        {
-            exit(status);
-        }
+		if (status == 0)
+		{
+			exit(status);
+		}
 
-        while (status == -1)
-        {
-            
-        }
-    }
+		while (status == -1)
+		{
+			/* handle error */
+		}
+	}
 }
 
